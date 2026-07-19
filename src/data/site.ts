@@ -49,7 +49,7 @@ export function pickList(obj: BiList, lang: Lang): string[] {
 export const SITE = {
   name: 'EveMiss Technology',
   url: 'https://evemiss.com',
-  email: 'contact@evemiss.com',
+  email: 'kakon77777@evemisslab.com',
   org: 'EveMiss Technology',
   author: 'Neo.K',
   title: {
@@ -105,7 +105,8 @@ export const TRINITY = [
       zh: '為 AGI 而生的硬體。3D 階梯式處理器與光子計算，徹底突破矽基物理極限。',
     },
     cta: { en: 'View Hardware Concepts', zh: '查看硬體概念' },
-    href: 'https://en.thisoneisneok.com/',
+    // updated 2026-07-19 per Neo
+    href: 'https://evemisstechnology.com/',
   },
   {
     id: 'language',
@@ -118,9 +119,10 @@ export const TRINITY = [
       zh: 'AGI 的原生母語。一種專為語義壓縮與零損耗效率設計的張量邏輯程式語言。',
     },
     cta: { en: 'Get the Language', zh: '獲取語言 (Get EML)' },
-    // fixed 2026-07-19: the live site linked to httpefficientnewlanguage.org,
-    // a defensive typo-mirror domain, not the real site
-    href: 'https://efficientnewlanguage.org/',
+    // updated 2026-07-19 per Neo (was https://efficientnewlanguage.org/,
+    // itself a fix from the live site's broken httpefficientnewlanguage.org
+    // typo-mirror link)
+    href: 'https://一言諾科技有限公司.tw/',
   },
 ] as const;
 
@@ -160,5 +162,10 @@ export const UNIVERSE = [
     name: '一言諾科技有限公司',
     tagline: { en: 'Taiwan legal entity', zh: '台灣法人登記' },
     href: 'https://一言諾科技有限公司.tw',
+  },
+  {
+    name: 'AI Tools Directory',
+    tagline: { en: 'Ranked directory of AI crawler & agent tools', zh: 'AI 爬蟲與 Agent 工具排行目錄' },
+    href: 'https://directory.evemiss.com',
   },
 ] as const;
