@@ -101,13 +101,17 @@ export const TRINITY = [
     number: '02',
     titleEn: 'The Body',
     titleZh: 'The Body｜軀體',
-    subtitle: { en: 'SynCore & Helix Architecture', zh: 'SynCore & Helix Architecture' },
+    // rewritten 2026-07-19 per Neo — visited evemisstechnology.com directly
+    // rather than reusing the old (now-wrong-destination) SynCore/Helix
+    // hardware copy. Actual site: "AI-native Tools & Agent Infrastructure",
+    // a product portfolio (EML, PHOSPHOR, EveGlyph Editor, AMEP) plus the
+    // "AI Frontier Radar" content engine.
+    subtitle: { en: 'AI-Native Tools & Agent Infrastructure', zh: 'AI-Native 工具與 Agent 基礎設施' },
     body: {
-      en: 'Hardware designed for AGI. 3D Staircase Processors and Photonic Computing that break the physical limits of silicon.',
-      zh: '為 AGI 而生的硬體。3D 階梯式處理器與光子計算，徹底突破矽基物理極限。',
+      en: 'The execution layer — a product portfolio (EML, PHOSPHOR, EveGlyph Editor, AMEP) and agent infrastructure for the next generation of intelligent work.',
+      zh: '執行層——面向下一代智能工作的產品組合（EML、PHOSPHOR、EveGlyph Editor、AMEP）與 Agent 基礎設施。',
     },
-    cta: { en: 'View Hardware Concepts', zh: '查看硬體概念' },
-    // updated 2026-07-19 per Neo
+    cta: { en: 'Explore Products', zh: '探索產品' },
     href: 'https://evemisstechnology.com/',
   },
   {
@@ -115,17 +119,22 @@ export const TRINITY = [
     number: '03',
     titleEn: 'The Language',
     titleZh: 'The Language｜語言',
-    subtitle: { en: 'EML (Efficient New Language)', zh: 'EML (Efficient New Language)' },
+    // rewritten 2026-07-19 per Neo — this card now links to the Taiwan
+    // legal entity site, not efficientnewlanguage.org (EML moved to the
+    // Universe grid instead), so the copy needed to change from describing
+    // EML to describing what's actually there. Visited
+    // 一言諾科技有限公司.tw directly: it explicitly states it is "not a
+    // Chinese translation of the international site, nor a copy of the
+    // ecosystem nav site" — it answers who this company is in Taiwan's
+    // language/regulatory/technology context. "The Language" title still
+    // fits, read as "which language/context" rather than "programming
+    // language".
+    subtitle: { en: '一言諾科技有限公司 (Taiwan Legal Entity)', zh: '一言諾科技有限公司（台灣法人）' },
     body: {
-      // corrected 2026-07-19 per Neo: the old copy called this a
-      // "tensor-logic programming language" — that's a future, unbuilt
-      // idea, not what EML actually is. Rewritten from the project's own
-      // README/description (github.com/kakon77777-commits/efficientnewlanguage):
-      // a deterministic semantic-overlay language, not a tensor language.
-      en: 'A deterministic semantic-overlay language for humans and AI agents — compresses program intent into symbols and transpiles back to Python, rule-based and reversibly.',
-      zh: '為人類與 AI Agent 設計的確定性語意疊加語言——將程式意圖壓縮為符號，並以規則為本、可逆地轉譯回 Python。',
+      en: "EveMiss Technology's Traditional Chinese, Taiwan-native identity surface — not a translation of the international site, but an answer to who this company is in Taiwan's language, regulatory, and technology context.",
+      zh: 'EveMiss Technology 在台灣、繁體中文語境下的本土身份表面——不是國際網站的翻譯，而是回答「這間公司在台灣是誰」。',
     },
-    cta: { en: 'Get the Language', zh: '獲取語言 (Get EML)' },
+    cta: { en: 'About the Entity', zh: '了解一言諾科技' },
     // updated 2026-07-19 per Neo (was https://efficientnewlanguage.org/,
     // itself a fix from the live site's broken httpefficientnewlanguage.org
     // typo-mirror link)
