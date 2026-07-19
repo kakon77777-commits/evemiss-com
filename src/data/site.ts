@@ -56,9 +56,11 @@ export const SITE = {
     en: 'EveMiss Technology | Redefining Intelligence',
     zh: 'EveMiss Technology | 重塑智能',
   },
+  // corrected 2026-07-19 per Neo: "tensor-native language" was wrong,
+  // same error as the Trinity "Language" card body (see note there)
   description: {
-    en: 'EveMiss Technology is building the complete substrate for Artificial General Intelligence — from theoretical physics to photonic hardware and a tensor-native language.',
-    zh: 'EveMiss Technology 正在構建通用人工智慧（AGI）的完整基質——從理論物理學到光子硬體與張量原生語言。',
+    en: 'EveMiss Technology is building the complete substrate for Artificial General Intelligence — from theoretical physics to photonic hardware and a semantic-overlay language.',
+    zh: 'EveMiss Technology 正在構建通用人工智慧（AGI）的完整基質——從理論物理學到光子硬體與語意疊加語言。',
   },
 } as const;
 
@@ -115,8 +117,13 @@ export const TRINITY = [
     titleZh: 'The Language｜語言',
     subtitle: { en: 'EML (Efficient New Language)', zh: 'EML (Efficient New Language)' },
     body: {
-      en: 'The native tongue of AGI. A tensor-logic programming language designed for semantic compression and zero-loss efficiency.',
-      zh: 'AGI 的原生母語。一種專為語義壓縮與零損耗效率設計的張量邏輯程式語言。',
+      // corrected 2026-07-19 per Neo: the old copy called this a
+      // "tensor-logic programming language" — that's a future, unbuilt
+      // idea, not what EML actually is. Rewritten from the project's own
+      // README/description (github.com/kakon77777-commits/efficientnewlanguage):
+      // a deterministic semantic-overlay language, not a tensor language.
+      en: 'A deterministic semantic-overlay language for humans and AI agents — compresses program intent into symbols and transpiles back to Python, rule-based and reversibly.',
+      zh: '為人類與 AI Agent 設計的確定性語意疊加語言——將程式意圖壓縮為符號，並以規則為本、可逆地轉譯回 Python。',
     },
     cta: { en: 'Get the Language', zh: '獲取語言 (Get EML)' },
     // updated 2026-07-19 per Neo (was https://efficientnewlanguage.org/,
@@ -167,7 +174,9 @@ export const UNIVERSE = [
     // card, so this Universe slot was repurposed to restore an EML link
     // (displaced from the Trinity "Language" card in the previous revision)
     name: '高效新語言 (EML)',
-    tagline: { en: 'Efficient New Language — a tensor-native programming language', zh: '高效新語言——張量原生程式語言' },
+    // corrected 2026-07-19 per Neo — see the same note on the Trinity
+    // "Language" card body above: not tensor-native, that's unbuilt.
+    tagline: { en: 'Semantic-overlay language — compresses intent into symbols, transpiles to Python', zh: '語意疊加語言——將意圖壓縮為符號，轉譯回 Python' },
     href: 'https://efficientnewlanguage.org/',
   },
   {
