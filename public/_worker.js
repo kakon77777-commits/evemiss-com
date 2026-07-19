@@ -27,6 +27,7 @@ const LANGS = [
   'zh', 'zh-cn', 'ja', 'ko', 'fr', 'de', 'es', 'pt', 'ru', 'ar', 'tr',
   'fa', 'bn', 'hi', 'id', 'vi', 'el', 'it', 'nl', 'he', 'pl',
   'sv', 'ur', 'th', 'ta', 'cs', 'uk', 'ms', 'fi', 'ro', 'hu',
+  'da', 'no', 'sk', 'fil', 'kk', 'sw', 'bs', 'eo',
 ];
 /** IP countries mapped to a non-default language */
 const COUNTRY_LANG = {
@@ -96,6 +97,18 @@ const COUNTRY_LANG = {
   FI: 'fi',
   RO: 'ro',
   HU: 'hu',
+  DK: 'da',
+  NO: 'no',
+  SK: 'sk',
+  PH: 'fil',
+  KZ: 'kk',
+  KE: 'sw',
+  TZ: 'sw',
+  UG: 'sw', // Swahili is an official language in Kenya, Tanzania, and Uganda
+  BA: 'bs',
+  // eo intentionally has no country mapping: Esperanto is a constructed
+  // international auxiliary language with no native-speaker country —
+  // Accept-Language is the only meaningful per-user signal.
 };
 /** Content-Language per lang code */
 const CONTENT_LANG = {
@@ -131,6 +144,14 @@ const CONTENT_LANG = {
   fi: 'fi',
   ro: 'ro',
   hu: 'hu',
+  da: 'da',
+  no: 'no',
+  sk: 'sk',
+  fil: 'fil',
+  kk: 'kk',
+  sw: 'sw',
+  bs: 'bs',
+  eo: 'eo',
 };
 const LANG_COOKIE = 'lang';
 const COOKIE_ATTRS = 'Path=/; Max-Age=31536000; SameSite=Lax';
@@ -179,6 +200,24 @@ function pickLang(request) {
   if (first.startsWith('nl')) return 'nl';
   if (first.startsWith('he') || first.startsWith('iw')) return 'he'; // 'iw' = old ISO 639-1 code for Hebrew, still sent by some browsers
   if (first.startsWith('pl')) return 'pl';
+  if (first.startsWith('sv')) return 'sv';
+  if (first.startsWith('ur')) return 'ur';
+  if (first.startsWith('th')) return 'th';
+  if (first.startsWith('ta')) return 'ta';
+  if (first.startsWith('cs')) return 'cs';
+  if (first.startsWith('uk')) return 'uk';
+  if (first.startsWith('ms')) return 'ms';
+  if (first.startsWith('fi')) return 'fi';
+  if (first.startsWith('ro')) return 'ro';
+  if (first.startsWith('hu')) return 'hu';
+  if (first.startsWith('da')) return 'da';
+  if (first.startsWith('no') || first.startsWith('nb') || first.startsWith('nn')) return 'no';
+  if (first.startsWith('sk')) return 'sk';
+  if (first.startsWith('fil')) return 'fil';
+  if (first.startsWith('kk')) return 'kk';
+  if (first.startsWith('sw')) return 'sw';
+  if (first.startsWith('bs')) return 'bs';
+  if (first.startsWith('eo')) return 'eo';
   return DEFAULT_LANG;
 }
 
