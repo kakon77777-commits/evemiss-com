@@ -23,7 +23,10 @@
 const CANONICAL_HOST = 'evemiss.com';
 const DEFAULT_LANG = 'en';
 /** language codes with a built tree under /<code>/ */
-const LANGS = ['zh', 'zh-cn', 'ja', 'ko', 'fr', 'de', 'es', 'pt', 'ru', 'ar', 'tr'];
+const LANGS = [
+  'zh', 'zh-cn', 'ja', 'ko', 'fr', 'de', 'es', 'pt', 'ru', 'ar', 'tr',
+  'fa', 'bn', 'hi', 'id', 'vi', 'el', 'it', 'nl', 'he', 'pl',
+];
 /** IP countries mapped to a non-default language */
 const COUNTRY_LANG = {
   TW: 'zh',
@@ -61,6 +64,24 @@ const COUNTRY_LANG = {
   LB: 'ar',
   SY: 'ar',
   TR: 'tr',
+  IR: 'fa',
+  AF: 'fa',
+  BD: 'bn',
+  // IN intentionally unmapped: India is multilingual (22 official
+  // languages) — Accept-Language is a better per-user signal than country
+  ID: 'id',
+  VN: 'vi',
+  GR: 'el',
+  CY: 'el', // Greek Cypriots are the island's majority
+  IT: 'it',
+  SM: 'it',
+  VA: 'it',
+  // BE: Dutch-speaking Flemish are the majority (~60%) over French-speaking
+  // Walloons (~40%)
+  NL: 'nl',
+  BE: 'nl',
+  IL: 'he',
+  PL: 'pl',
 };
 /** Content-Language per lang code */
 const CONTENT_LANG = {
@@ -76,6 +97,16 @@ const CONTENT_LANG = {
   ru: 'ru',
   ar: 'ar',
   tr: 'tr',
+  fa: 'fa',
+  bn: 'bn',
+  hi: 'hi',
+  id: 'id',
+  vi: 'vi',
+  el: 'el',
+  it: 'it',
+  nl: 'nl',
+  he: 'he',
+  pl: 'pl',
 };
 const LANG_COOKIE = 'lang';
 const COOKIE_ATTRS = 'Path=/; Max-Age=31536000; SameSite=Lax';
@@ -114,6 +145,16 @@ function pickLang(request) {
   if (first.startsWith('ru')) return 'ru';
   if (first.startsWith('ar')) return 'ar';
   if (first.startsWith('tr')) return 'tr';
+  if (first.startsWith('fa')) return 'fa';
+  if (first.startsWith('bn')) return 'bn';
+  if (first.startsWith('hi')) return 'hi';
+  if (first.startsWith('id')) return 'id';
+  if (first.startsWith('vi')) return 'vi';
+  if (first.startsWith('el')) return 'el';
+  if (first.startsWith('it')) return 'it';
+  if (first.startsWith('nl')) return 'nl';
+  if (first.startsWith('he') || first.startsWith('iw')) return 'he'; // 'iw' = old ISO 639-1 code for Hebrew, still sent by some browsers
+  if (first.startsWith('pl')) return 'pl';
   return DEFAULT_LANG;
 }
 
