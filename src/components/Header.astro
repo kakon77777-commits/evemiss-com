@@ -1,0 +1,17 @@
+---
+import { SITE, langPrefix, type Lang } from '../data/site';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const prefix = langPrefix(lang);
+---
+
+<header class="site-header">
+  <a href={prefix || '/'} class="brand">{SITE.name}</a>
+  <nav aria-label="Primary">
+    <LanguageSwitcher lang={lang} id="lang-switcher" />
+  </nav>
+</header>

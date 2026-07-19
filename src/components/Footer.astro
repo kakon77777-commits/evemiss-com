@@ -1,0 +1,14 @@
+---
+import { SITE, type Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+---
+
+<footer>
+  <div class="footer-logo">EVEMISS TECHNOLOGY</div>
+  <div class="slogan">一言諾，一言為定。</div>
+  <a href={`mailto:${SITE.email}`} class="contact-link">neokpolaris@gmail.com</a>
+</footer>

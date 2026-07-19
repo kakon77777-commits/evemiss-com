@@ -1,0 +1,18 @@
+{
+  "name": "evemiss-com",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "EveMiss Technology — evemiss.com corporate hub, single-URL multi-language.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.4.1",
+    "astro": "^5.12.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.112.0"
+  }
+}

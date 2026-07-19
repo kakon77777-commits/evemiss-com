@@ -1,0 +1,369 @@
+/* Ported from the live evemiss.com design (總企業網站/英文 (en)/index.html),
+   extended with a header/nav (the original single-page site had none) and
+   a "Universe" section linking every other real EveMiss property. */
+
+:root {
+  --bg-deep: #030305;
+  --bg-surface: rgba(255, 255, 255, 0.03);
+  --accent-cyan: #00f2ff;
+  --accent-purple: #bc13fe;
+  --accent-gold: #ffd700;
+  --text-primary: #ffffff;
+  --text-secondary: #888899;
+  --border-soft: rgba(255, 255, 255, 0.05);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- BACKGROUND FX --- */
+.bg-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: -1;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+
+.glow-spot {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+  z-index: -2;
+  animation: breathe 10s infinite alternate;
+}
+.glow-1 {
+  top: -200px;
+  left: -100px;
+  background: var(--accent-purple);
+}
+.glow-2 {
+  bottom: -200px;
+  right: -100px;
+  background: var(--accent-cyan);
+}
+
+@keyframes breathe {
+  0% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0.2;
+  }
+}
+
+/* --- HEADER --- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 2rem;
+  background: rgba(3, 3, 5, 0.75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-soft);
+}
+.site-header .brand {
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+.site-header nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.site-header nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+.site-header nav a:hover {
+  color: var(--text-primary);
+}
+
+/* --- HERO SECTION --- */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 6rem 2rem 4rem;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #fff 0%, #a5a5b5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin-bottom: 4rem;
+  font-weight: 300;
+}
+
+/* --- THE TRINITY GRID --- */
+.trinity-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem 6rem;
+}
+
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  border-color: var(--border-strong);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: currentColor;
+  opacity: 0;
+  transition: var(--transition);
+}
+.card:hover::before {
+  opacity: 1;
+}
+
+.card-icon {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.card h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+
+.card p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  flex-grow: 1;
+  text-align: justify;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+.card.mind {
+  color: var(--accent-purple);
+}
+.card.body {
+  color: var(--accent-gold);
+}
+.card.lang {
+  color: var(--accent-cyan);
+}
+
+/* --- UNIVERSE SECTION (new) --- */
+.universe {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 6rem;
+}
+.universe h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.universe .universe-sub {
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.universe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+.universe-item {
+  display: block;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: var(--transition);
+}
+.universe-item:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-4px);
+}
+.universe-item .name {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.universe-item .name .arrow {
+  color: var(--accent-cyan);
+  opacity: 0;
+  transition: var(--transition);
+}
+.universe-item:hover .name .arrow {
+  opacity: 1;
+}
+.universe-item .tagline {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+/* --- FOOTER --- */
+footer {
+  padding: 3rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border-soft);
+  margin-top: auto;
+}
+.footer-logo {
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+.slogan {
+  font-family: 'Noto Serif TC', 'Times New Roman', serif;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  opacity: 0.7;
+  letter-spacing: 2px;
+}
+.contact-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  border-bottom: 1px dotted transparent;
+  transition: var(--transition);
+}
+.contact-link:hover {
+  color: var(--accent-cyan);
+  border-bottom-color: var(--accent-cyan);
+}
+
+/* --- MatrixSelect theming: force the site's own dark/neon palette
+   regardless of OS color-scheme preference (this site has no light mode) --- */
+.matrix-select {
+  --ms-fg: var(--text-primary);
+  --ms-fg-muted: var(--text-secondary);
+  --ms-bg: #0a0a0f;
+  --ms-bg-hover: rgba(0, 242, 255, 0.08);
+  --ms-border: var(--border-soft);
+  --ms-border-strong: var(--border-strong);
+  --ms-accent: var(--accent-cyan);
+  --ms-accent-bg: rgba(0, 242, 255, 0.12);
+  --ms-radius: 10px;
+  --ms-panel-width: 16rem;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 1.5rem 3rem;
+  }
+  .trinity-container {
+    grid-template-columns: 1fr;
+  }
+  .site-header {
+    padding: 1rem 1.25rem;
+  }
+  .site-header nav {
+    gap: 1rem;
+  }
+}

@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pick, TRINITY, UNIVERSE, type Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const heroTitle = {
+  en: 'Redefining Intelligence.<br>From Theory to Reality.',
+  zh: '重塑智能。<br>從理論到現實。',
+};
+const heroSub = {
+  en: 'EveMiss Technology is building the complete substrate for Artificial General Intelligence.',
+  zh: 'EveMiss Technology 正在構建通用人工智慧 (AGI) 的完整基質。',
+};
+const universeTitle = { en: 'The EveMiss Universe', zh: 'EveMiss 全部作品' };
+const universeSub = {
+  en: 'Every live project, research site, and tool under EveMiss Technology.',
+  zh: 'EveMiss Technology 旗下所有上線中的專案、研究站與工具。',
+};
+---
+
+<BaseLayout lang={lang}>
+  <section class="hero">
+    <h1 set:html={pick(heroTitle, lang)} />
+    <p>{pick(heroSub, lang)}</p>
+  </section>
+
+  <div class="trinity-container">
+    {
+      TRINITY.map((item) => (
+        <div class={`card ${item.id}`}>
+          <div class="card-icon">{item.number}</div>
+          <h2>{lang === 'zh' ? item.titleZh : item.titleEn}</h2>
+          <p>
+            <strong>{pick(item.subtitle, lang)}</strong>
+            <br />
+            {pick(item.body, lang)}
+          </p>
+          <a href={item.href} class="btn">
+            {pick(item.cta, lang)} <span>→</span>
+          </a>
+        </div>
+      ))
+    }
+  </div>
+
+  <section class="universe">
+    <h2>{pick(universeTitle, lang)}</h2>
+    <p class="universe-sub">{pick(universeSub, lang)}</p>
+    <div class="universe-grid">
+      {
+        UNIVERSE.map((item) => (
+          <a href={item.href} class="universe-item">
+            <div class="name">
+              {item.name} <span class="arrow">→</span>
+            </div>
+            <div class="tagline">{pick(item.tagline, lang)}</div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

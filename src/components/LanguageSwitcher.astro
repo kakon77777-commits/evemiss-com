@@ -1,0 +1,34 @@
+---
+import { LANGS, LANG_META, type Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+  id: string;
+}
+const { lang, id } = Astro.props;
+
+const items = LANGS.map((code) => ({
+  value: code,
+  label: LANG_META[code].label,
+  sublabel: LANG_META[code].labelEn,
+}));
+---
+
+<div id={id}></div>
+
+<script define:vars={{ items, lang, id }}>
+  import('/matrix-select.js').then(({ MatrixSelect }) => {
+    const container = document.getElementById(id);
+    if (!container) return;
+    MatrixSelect.create(container, {
+      items,
+      value: lang,
+      placeholder: 'Search…',
+      columns: 1,
+      onChange: (value) => {
+        document.cookie = `lang=${value};path=/;max-age=31536000;samesite=lax`;
+        location.reload();
+      },
+    });
+  });
+</script>
