@@ -29,6 +29,16 @@ import { STRINGS as IT_STRINGS } from './translations/it';
 import { STRINGS as NL_STRINGS } from './translations/nl';
 import { STRINGS as HE_STRINGS } from './translations/he';
 import { STRINGS as PL_STRINGS } from './translations/pl';
+import { STRINGS as SV_STRINGS } from './translations/sv';
+import { STRINGS as UR_STRINGS } from './translations/ur';
+import { STRINGS as TH_STRINGS } from './translations/th';
+import { STRINGS as TA_STRINGS } from './translations/ta';
+import { STRINGS as CS_STRINGS } from './translations/cs';
+import { STRINGS as UK_STRINGS } from './translations/uk';
+import { STRINGS as MS_STRINGS } from './translations/ms';
+import { STRINGS as FI_STRINGS } from './translations/fi';
+import { STRINGS as RO_STRINGS } from './translations/ro';
+import { STRINGS as HU_STRINGS } from './translations/hu';
 
 export type Lang =
   | 'en'
@@ -52,15 +62,27 @@ export type Lang =
   | 'it'
   | 'nl'
   | 'he'
-  | 'pl';
+  | 'pl'
+  | 'sv'
+  | 'ur'
+  | 'th'
+  | 'ta'
+  | 'cs'
+  | 'uk'
+  | 'ms'
+  | 'fi'
+  | 'ro'
+  | 'hu';
 
 /** all supported languages; adding one = translation file + worker mapping.
  * Target list (~4 rounds, 10 languages/round, matching agiright.org's
  * original 40-language order) — Neo: "一次10個。幾輪就可以了。量不大。"
- * Round 1: zh-cn/ja/ko/fr/de/es/pt/ru/ar/tr. Round 2: fa/bn/hi/id/vi/el/it/nl/he/pl. */
+ * Round 1: zh-cn/ja/ko/fr/de/es/pt/ru/ar/tr. Round 2: fa/bn/hi/id/vi/el/it/nl/he/pl.
+ * Round 3: sv/ur/th/ta/cs/uk/ms/fi/ro/hu. */
 export const LANGS: Lang[] = [
   'en', 'zh', 'zh-cn', 'ja', 'ko', 'fr', 'de', 'es', 'pt', 'ru', 'ar', 'tr',
   'fa', 'bn', 'hi', 'id', 'vi', 'el', 'it', 'nl', 'he', 'pl',
+  'sv', 'ur', 'th', 'ta', 'cs', 'uk', 'ms', 'fi', 'ro', 'hu',
 ];
 export const NON_DEFAULT_LANGS = LANGS.filter((l) => l !== 'en') as Exclude<Lang, 'en'>[];
 
@@ -87,6 +109,16 @@ export const LANG_META: Record<Lang, { html: string; ogLocale: string; label: st
   nl: { html: 'nl', ogLocale: 'nl_NL', label: 'Nederlands', labelEn: 'Dutch', dir: 'ltr' },
   he: { html: 'he', ogLocale: 'he_IL', label: 'עברית', labelEn: 'Hebrew', dir: 'rtl' },
   pl: { html: 'pl', ogLocale: 'pl_PL', label: 'Polski', labelEn: 'Polish', dir: 'ltr' },
+  sv: { html: 'sv', ogLocale: 'sv_SE', label: 'Svenska', labelEn: 'Swedish', dir: 'ltr' },
+  ur: { html: 'ur', ogLocale: 'ur_PK', label: 'اردو', labelEn: 'Urdu', dir: 'rtl' },
+  th: { html: 'th', ogLocale: 'th_TH', label: 'ไทย', labelEn: 'Thai', dir: 'ltr' },
+  ta: { html: 'ta', ogLocale: 'ta_IN', label: 'தமிழ்', labelEn: 'Tamil', dir: 'ltr' },
+  cs: { html: 'cs', ogLocale: 'cs_CZ', label: 'Čeština', labelEn: 'Czech', dir: 'ltr' },
+  uk: { html: 'uk', ogLocale: 'uk_UA', label: 'Українська', labelEn: 'Ukrainian', dir: 'ltr' },
+  ms: { html: 'ms', ogLocale: 'ms_MY', label: 'Bahasa Melayu', labelEn: 'Malay', dir: 'ltr' },
+  fi: { html: 'fi', ogLocale: 'fi_FI', label: 'Suomi', labelEn: 'Finnish', dir: 'ltr' },
+  ro: { html: 'ro', ogLocale: 'ro_RO', label: 'Română', labelEn: 'Romanian', dir: 'ltr' },
+  hu: { html: 'hu', ogLocale: 'hu_HU', label: 'Magyar', labelEn: 'Hungarian', dir: 'ltr' },
 };
 
 /** bilingual source string; languages beyond en/zh would resolve via STRING_MAPS */
@@ -120,6 +152,16 @@ const STRING_MAPS: Partial<Record<Lang, Record<string, string>>> = {
   nl: NL_STRINGS,
   he: HE_STRINGS,
   pl: PL_STRINGS,
+  sv: SV_STRINGS,
+  ur: UR_STRINGS,
+  th: TH_STRINGS,
+  ta: TA_STRINGS,
+  cs: CS_STRINGS,
+  uk: UK_STRINGS,
+  ms: MS_STRINGS,
+  fi: FI_STRINGS,
+  ro: RO_STRINGS,
+  hu: HU_STRINGS,
 };
 
 /** resolve a bilingual string for any language, falling back to English */

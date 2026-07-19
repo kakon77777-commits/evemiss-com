@@ -26,6 +26,7 @@ const DEFAULT_LANG = 'en';
 const LANGS = [
   'zh', 'zh-cn', 'ja', 'ko', 'fr', 'de', 'es', 'pt', 'ru', 'ar', 'tr',
   'fa', 'bn', 'hi', 'id', 'vi', 'el', 'it', 'nl', 'he', 'pl',
+  'sv', 'ur', 'th', 'ta', 'cs', 'uk', 'ms', 'fi', 'ro', 'hu',
 ];
 /** IP countries mapped to a non-default language */
 const COUNTRY_LANG = {
@@ -82,6 +83,19 @@ const COUNTRY_LANG = {
   BE: 'nl',
   IL: 'he',
   PL: 'pl',
+  SE: 'sv',
+  PK: 'ur',
+  TH: 'th',
+  // ta intentionally has no country mapping: Tamil's largest populations
+  // (India, Sri Lanka) are both majority-other-language countries — same
+  // reasoning as IN above. Accept-Language is the accurate per-user signal.
+  CZ: 'cs',
+  UA: 'uk',
+  MY: 'ms',
+  BN: 'ms', // Brunei: Malay is the sole official language
+  FI: 'fi',
+  RO: 'ro',
+  HU: 'hu',
 };
 /** Content-Language per lang code */
 const CONTENT_LANG = {
@@ -107,6 +121,16 @@ const CONTENT_LANG = {
   nl: 'nl',
   he: 'he',
   pl: 'pl',
+  sv: 'sv',
+  ur: 'ur',
+  th: 'th',
+  ta: 'ta',
+  cs: 'cs',
+  uk: 'uk',
+  ms: 'ms',
+  fi: 'fi',
+  ro: 'ro',
+  hu: 'hu',
 };
 const LANG_COOKIE = 'lang';
 const COOKIE_ATTRS = 'Path=/; Max-Age=31536000; SameSite=Lax';
