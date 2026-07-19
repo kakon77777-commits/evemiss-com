@@ -3,7 +3,9 @@
 EveMiss Technology's corporate hub — rebuilt 2026-07-19 as a single-URL,
 multi-language site, replacing the old per-language-subdomain approach
 (每一個子網域都單獨建置, documented in
-`D:\Ai\網站群\總企業網站\EveMiss ALO-SEO 多子網域擴張策略.txt`).
+`D:\Ai\網站群\總企業網站\EveMiss ALO-SEO 多子網域擴張策略.txt`). The ~18 old
+per-language subdomains (he.evemiss.com, el.evemiss.com, ...) now 301
+redirect here — see [`legacy-subdomain-redirects/`](legacy-subdomain-redirects/README.md).
 
 ## Architecture
 
