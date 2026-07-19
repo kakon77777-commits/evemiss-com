@@ -349,7 +349,7 @@ footer {
   --ms-accent: var(--accent-cyan);
   --ms-accent-bg: rgba(0, 242, 255, 0.12);
   --ms-radius: 10px;
-  --ms-panel-width: 16rem;
+  --ms-panel-width: 22rem;
 }
 
 /* --- RESPONSIVE --- */

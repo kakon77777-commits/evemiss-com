@@ -24,7 +24,8 @@ const items = LANGS.map((code) => ({
       items,
       value: lang,
       placeholder: 'Search…',
-      columns: 1,
+      columns: 'auto',
+      minColumnWidth: 150,
       onChange: (value) => {
         document.cookie = `lang=${value};path=/;max-age=31536000;samesite=lax`;
         location.reload();
