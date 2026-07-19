@@ -23,17 +23,59 @@
 const CANONICAL_HOST = 'evemiss.com';
 const DEFAULT_LANG = 'en';
 /** language codes with a built tree under /<code>/ */
-const LANGS = ['zh'];
+const LANGS = ['zh', 'zh-cn', 'ja', 'ko', 'fr', 'de', 'es', 'pt', 'ru', 'ar', 'tr'];
 /** IP countries mapped to a non-default language */
 const COUNTRY_LANG = {
   TW: 'zh',
   HK: 'zh',
   MO: 'zh',
+  CN: 'zh-cn',
+  JP: 'ja',
+  KR: 'ko',
+  FR: 'fr',
+  DE: 'de',
+  AT: 'de',
+  CH: 'de',
+  ES: 'es',
+  MX: 'es',
+  AR: 'es',
+  CO: 'es',
+  CL: 'es',
+  PE: 'es',
+  PT: 'pt',
+  BR: 'pt',
+  RU: 'ru',
+  BY: 'ru',
+  SA: 'ar',
+  AE: 'ar',
+  EG: 'ar',
+  IQ: 'ar',
+  JO: 'ar',
+  KW: 'ar',
+  QA: 'ar',
+  BH: 'ar',
+  OM: 'ar',
+  MA: 'ar',
+  DZ: 'ar',
+  TN: 'ar',
+  LB: 'ar',
+  SY: 'ar',
+  TR: 'tr',
 };
 /** Content-Language per lang code */
 const CONTENT_LANG = {
   en: 'en',
   zh: 'zh-Hant',
+  'zh-cn': 'zh-Hans',
+  ja: 'ja',
+  ko: 'ko',
+  fr: 'fr',
+  de: 'de',
+  es: 'es',
+  pt: 'pt',
+  ru: 'ru',
+  ar: 'ar',
+  tr: 'tr',
 };
 const LANG_COOKIE = 'lang';
 const COOKIE_ATTRS = 'Path=/; Max-Age=31536000; SameSite=Lax';
@@ -59,7 +101,19 @@ function pickLang(request) {
 
   const accept = (request.headers.get('Accept-Language') || '').toLowerCase();
   const first = accept.split(',')[0].trim().split(';')[0];
-  if (first.startsWith('zh')) return 'zh'; // zh-tw / zh-hant / zh-hk / bare zh → Traditional
+  if (first.startsWith('zh')) {
+    if (/hans|cn|sg/.test(first)) return 'zh-cn';
+    return 'zh'; // zh-tw / zh-hant / zh-hk / bare zh → Traditional
+  }
+  if (first.startsWith('ja')) return 'ja';
+  if (first.startsWith('ko')) return 'ko';
+  if (first.startsWith('fr')) return 'fr';
+  if (first.startsWith('de')) return 'de';
+  if (first.startsWith('es')) return 'es';
+  if (first.startsWith('pt')) return 'pt';
+  if (first.startsWith('ru')) return 'ru';
+  if (first.startsWith('ar')) return 'ar';
+  if (first.startsWith('tr')) return 'tr';
   return DEFAULT_LANG;
 }
 

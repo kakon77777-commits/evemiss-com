@@ -1,22 +1,58 @@
 /**
  * Single-URL i18n data layer, adapted from agiright.org's src/data/site.ts.
- * Starts with en + zh only (Neo's priority); adding a language later is:
+ * Started with en + zh only (Neo's priority); adding a language is:
  *   1. add the code to Lang/LANGS/LANG_META here
- *   2. add its translations to STRING_MAPS (or leave English fallback)
- *   3. add it to the worker's LANGS array (+ optional COUNTRY_LANG entry)
+ *   2. add its translation file to STRING_MAPS below
+ *   3. add it to the worker's LANGS array (+ optional COUNTRY_LANG entry) —
+ *      keep worker/index.js and public/_worker.js in sync by hand
  * No other structural change needed — this file already fans out to N
  * languages via pick()/pickList(), not just a 2-language special case.
  */
 
-export type Lang = 'en' | 'zh';
+import { STRINGS as ZHCN_STRINGS } from './translations/zh-cn';
+import { STRINGS as JA_STRINGS } from './translations/ja';
+import { STRINGS as KO_STRINGS } from './translations/ko';
+import { STRINGS as FR_STRINGS } from './translations/fr';
+import { STRINGS as DE_STRINGS } from './translations/de';
+import { STRINGS as ES_STRINGS } from './translations/es';
+import { STRINGS as PT_STRINGS } from './translations/pt';
+import { STRINGS as RU_STRINGS } from './translations/ru';
+import { STRINGS as AR_STRINGS } from './translations/ar';
+import { STRINGS as TR_STRINGS } from './translations/tr';
 
-/** all supported languages; adding one = translation file + worker mapping */
-export const LANGS: Lang[] = ['en', 'zh'];
+export type Lang =
+  | 'en'
+  | 'zh'
+  | 'zh-cn'
+  | 'ja'
+  | 'ko'
+  | 'fr'
+  | 'de'
+  | 'es'
+  | 'pt'
+  | 'ru'
+  | 'ar'
+  | 'tr';
+
+/** all supported languages; adding one = translation file + worker mapping.
+ * Target list (round 1 of ~4, 10 languages/round, matching agiright.org's
+ * original 40-language order) — Neo: "一次10個。幾輪就可以了。量不大。" */
+export const LANGS: Lang[] = ['en', 'zh', 'zh-cn', 'ja', 'ko', 'fr', 'de', 'es', 'pt', 'ru', 'ar', 'tr'];
 export const NON_DEFAULT_LANGS = LANGS.filter((l) => l !== 'en') as Exclude<Lang, 'en'>[];
 
 export const LANG_META: Record<Lang, { html: string; ogLocale: string; label: string; labelEn: string; dir: 'ltr' | 'rtl' }> = {
   en: { html: 'en', ogLocale: 'en_US', label: 'English', labelEn: 'English', dir: 'ltr' },
   zh: { html: 'zh-Hant', ogLocale: 'zh_TW', label: '繁體中文', labelEn: 'Chinese (Traditional)', dir: 'ltr' },
+  'zh-cn': { html: 'zh-Hans', ogLocale: 'zh_CN', label: '简体中文', labelEn: 'Chinese (Simplified)', dir: 'ltr' },
+  ja: { html: 'ja', ogLocale: 'ja_JP', label: '日本語', labelEn: 'Japanese', dir: 'ltr' },
+  ko: { html: 'ko', ogLocale: 'ko_KR', label: '한국어', labelEn: 'Korean', dir: 'ltr' },
+  fr: { html: 'fr', ogLocale: 'fr_FR', label: 'Français', labelEn: 'French', dir: 'ltr' },
+  de: { html: 'de', ogLocale: 'de_DE', label: 'Deutsch', labelEn: 'German', dir: 'ltr' },
+  es: { html: 'es', ogLocale: 'es_ES', label: 'Español', labelEn: 'Spanish', dir: 'ltr' },
+  pt: { html: 'pt', ogLocale: 'pt_PT', label: 'Português', labelEn: 'Portuguese', dir: 'ltr' },
+  ru: { html: 'ru', ogLocale: 'ru_RU', label: 'Русский', labelEn: 'Russian', dir: 'ltr' },
+  ar: { html: 'ar', ogLocale: 'ar_SA', label: 'العربية', labelEn: 'Arabic', dir: 'rtl' },
+  tr: { html: 'tr', ogLocale: 'tr_TR', label: 'Türkçe', labelEn: 'Turkish', dir: 'ltr' },
 };
 
 /** bilingual source string; languages beyond en/zh would resolve via STRING_MAPS */
@@ -29,7 +65,18 @@ export interface BiList {
   zh: string[];
 }
 
-const STRING_MAPS: Partial<Record<Lang, Record<string, string>>> = {};
+const STRING_MAPS: Partial<Record<Lang, Record<string, string>>> = {
+  'zh-cn': ZHCN_STRINGS,
+  ja: JA_STRINGS,
+  ko: KO_STRINGS,
+  fr: FR_STRINGS,
+  de: DE_STRINGS,
+  es: ES_STRINGS,
+  pt: PT_STRINGS,
+  ru: RU_STRINGS,
+  ar: AR_STRINGS,
+  tr: TR_STRINGS,
+};
 
 /** resolve a bilingual string for any language, falling back to English */
 export function pick(obj: Bi, lang: Lang): string {
