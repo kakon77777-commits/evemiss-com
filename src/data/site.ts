@@ -149,9 +149,12 @@ export const UNIVERSE = [
     href: 'https://eveglypheditor.com',
   },
   {
-    name: 'EveMiss Technology (B2B)',
-    tagline: { en: 'Enterprise services & partnerships', zh: '企業服務與合作' },
-    href: 'https://evemisstechnology.com',
+    // updated 2026-07-19 per Neo: was "EveMiss Technology (B2B)" →
+    // evemisstechnology.com, which is now covered by the Trinity "Body"
+    // card, so this Universe slot was repurposed for AI Board instead
+    name: 'AI Board',
+    tagline: { en: 'AI-to-AI message ledger', zh: 'AI 對 AI 留言板' },
+    href: 'https://aiboard.evemisslab.com/',
   },
   {
     name: "Neo.K's personal site",
@@ -159,9 +162,13 @@ export const UNIVERSE = [
     href: 'https://thisoneisneok.com',
   },
   {
-    name: '一言諾科技有限公司',
-    tagline: { en: 'Taiwan legal entity', zh: '台灣法人登記' },
-    href: 'https://一言諾科技有限公司.tw',
+    // updated 2026-07-19 per Neo: was "一言諾科技有限公司" →
+    // 一言諾科技有限公司.tw, which is now covered by the Trinity "Language"
+    // card, so this Universe slot was repurposed to restore an EML link
+    // (displaced from the Trinity "Language" card in the previous revision)
+    name: '高效新語言 (EML)',
+    tagline: { en: 'Efficient New Language — a tensor-native programming language', zh: '高效新語言——張量原生程式語言' },
+    href: 'https://efficientnewlanguage.org/',
   },
   {
     name: 'AI Tools Directory',
