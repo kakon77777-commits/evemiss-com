@@ -359,4 +359,9 @@ export const UNIVERSE = [
     tagline: { en: 'Ranked directory of AI crawler & agent tools', zh: 'AI 爬蟲與 Agent 工具排行目錄' },
     href: 'https://directory.evemiss.com',
   },
+  {
+    name: 'AI Research Stack',
+    tagline: { en: 'Our own open-source crawler + governed research runtime', zh: '我們自己打造的開源爬蟲＋治理研究執行環境' },
+    href: '/research',
+  },
 ] as const;

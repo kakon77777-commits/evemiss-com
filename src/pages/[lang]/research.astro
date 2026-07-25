@@ -1,0 +1,12 @@
+---
+import ResearchPage from '../../components/ResearchPage.astro';
+import { NON_DEFAULT_LANGS, type Lang } from '../../data/site';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+---
+
+<ResearchPage lang={lang} />

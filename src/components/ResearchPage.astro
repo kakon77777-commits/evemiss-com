@@ -1,0 +1,260 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pick, type Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const pageTitle = { en: 'AI Research Stack', zh: 'AI 研究技術棧' };
+const pageDesc = {
+  en: 'ai-web-research and Veritaxa — an open-source, robots-compliant AI crawler paired with a governed research runtime. MIT licensed, free on GitHub.',
+  zh: 'ai-web-research 與 Veritaxa——遵守 robots.txt 的開源 AI 爬蟲，搭配治理型研究執行環境。MIT 授權，GitHub 免費取得。',
+};
+
+const heroTitle = { en: 'AI Research Stack', zh: 'AI 研究技術棧' };
+const heroSub = {
+  en: 'Two open-source tools, built together — from crawling the open web to publishing governed, auditable research.',
+  zh: '兩套一起打造的開源工具——從爬取公開網路資料，到發布經過治理、可稽核的研究成果。',
+};
+
+const projects = [
+  {
+    id: 'crawler',
+    name: 'ai-web-research',
+    tagline: {
+      en: 'A deterministic, robots-aware AI web crawler & research agent',
+      zh: '遵守 robots.txt、確定性優先的 AI 網路爬蟲與研究代理人',
+    },
+    body: {
+      en: "Crawls and monitors the web with legal and ethical guardrails built in from the start — reads and honors robots.txt, respects each site's Crawl-delay and rate limits, and blocks SSRF targets before every fetch. On top of that foundation: LLM-based semantic extraction with source-quote verification, a Divergence–Resonance–Compression research loop, and an MCP server exposing every capability to compatible agents.",
+      zh: '從一開始就內建法律與倫理防線的網路爬取與監測工具——讀取並遵守 robots.txt、遵循各網站的 Crawl-delay 與速率限制，每次抓取前都先擋下 SSRF 目標。在這層基礎之上，才是附來源引句驗證的 LLM 語意抽取、Divergence–Resonance–Compression 研究迴圈，以及把所有能力開放給相容 Agent 呼叫的 MCP 伺服器。',
+    },
+    tech: ['Python 3.11+', 'uv', 'Crawl4AI', 'httpx', 'SQLite', 'MCP Server'],
+    install:
+      'git clone https://github.com/kakon77777-commits/ai-web-research\ncd ai-web-research\nuv venv && uv pip install -e .',
+    href: 'https://github.com/kakon77777-commits/ai-web-research',
+    license: 'MIT',
+  },
+  {
+    id: 'veritaxa',
+    name: 'Veritaxa Workbench',
+    tagline: {
+      en: 'The first stable CHSA reference runtime for governed research',
+      zh: '第一套穩定版 CHSA 治理研究執行環境',
+    },
+    body: {
+      en: 'Takes evidence — from a crawler like ai-web-research, or any authorized source — through a governed pipeline: normalized Evidence IR, stable Evidence Spans, candidate Claims, governed Claim Review, evidence invalidation with dependency propagation, and deterministic, portable Research Bundles. Four boundaries hold throughout: Extraction ≠ Evidence, Evidence ≠ Verified Claim, Approved Claim ≠ Universal Truth, Recompilation ≠ Automatic Republication.',
+      zh: '把證據——不論來自 ai-web-research 這樣的爬蟲，或任何合法授權來源——帶入一條有治理的流程：標準化的 Evidence IR、穩定的 Evidence Span、候選 Claim、經過治理的 Claim Review、證據失效與依賴傳播、確定性且可攜的 Research Bundle。全程維持四條界線：萃取 ≠ 證據、證據 ≠ 已驗證主張、已核准主張 ≠ 普遍真理、重新編譯 ≠ 自動重新發布。',
+    },
+    tech: ['Python 3.11+', 'SQLite', 'XLSX Governance Workbench', 'CLI', 'Optional MCP Gateway'],
+    install:
+      'git clone https://github.com/kakon77777-commits/Veritaxa\ncd Veritaxa\npython release/v1.0/materialize.py --output-dir build --extract --clean\ncd build/source/veritaxa_workbench_v1_0 && pip install -e . --no-build-isolation',
+    href: 'https://github.com/kakon77777-commits/Veritaxa',
+    license: 'MIT',
+  },
+] as const;
+
+const connectionTitle = { en: 'How they connect', zh: '兩者如何串接' };
+const connectionBody = {
+  en: 'ai-web-research is the Source Adapter — legally-scoped, rate-limited fetching and extraction. Veritaxa is the governance layer on top of it — turning fetched evidence into reviewed, versioned, publishable research. Both speak the same Model Context Protocol, so they connect without custom glue code.',
+  zh: 'ai-web-research 扮演來源端（Source Adapter）——在合法範圍內、有速率限制地抓取與抽取。Veritaxa 則是上層治理——把抓到的證據變成經過審查、可版本化、可發布的研究成果。兩者都使用同一種 MCP 協定，不需要額外的膠水程式碼就能串接。',
+};
+
+const legalTitle = { en: 'Use it legally.', zh: '請合法使用。' };
+const legalBody = {
+  en: "This page provides access to AI crawling technology — that is not a license to scrape anything, anywhere, without limits. ai-web-research honors robots.txt and per-site rate limits by design, but lawful use is still your responsibility: check each target site's Terms of Service and robots policy, respect copyright and database rights, comply with the data-protection law that applies to you, and never use these tools to bypass access controls or overload a server you don't operate. When authorization is unclear, don't scrape — ask first.",
+  zh: '這個頁面提供的是 AI 爬蟲技術的存取權，不是「可以在網路上為所欲為抓取資料」的許可證。ai-web-research 在設計上就會遵守 robots.txt 與各網站的速率限制，但合法使用的責任終究在使用者身上：抓取前請先確認目標網站的服務條款與 robots 政策、尊重著作權與資料庫權利、遵守你所在地適用的個資法規，絕對不要用這些工具繞過存取控制，或讓不屬於你管理的伺服器超載。授權不明確的時候，不要抓——先問清楚。',
+};
+
+const viewOnGithub = { en: 'View on GitHub', zh: '前往 GitHub' };
+---
+
+<BaseLayout lang={lang} title={pick(pageTitle, lang)} description={pick(pageDesc, lang)}>
+  <section class="hero research-hero">
+    <h1>{pick(heroTitle, lang)}</h1>
+    <p>{pick(heroSub, lang)}</p>
+  </section>
+
+  <section class="projects">
+    {
+      projects.map((project) => (
+        <div class="project-card" id={project.id}>
+          <div class="project-head">
+            <h2>{project.name}</h2>
+            <span class="license-badge">{project.license}</span>
+          </div>
+          <p class="project-tagline">{pick(project.tagline, lang)}</p>
+          <p class="project-body">{pick(project.body, lang)}</p>
+          <div class="tech-tags">
+            {project.tech.map((t) => (
+              <span class="tech-tag">{t}</span>
+            ))}
+          </div>
+          <pre class="install-block"><code>{project.install}</code></pre>
+          <a href={project.href} class="btn" target="_blank" rel="noopener noreferrer">
+            {pick(viewOnGithub, lang)} <span>→</span>
+          </a>
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="connection">
+    <h2>{pick(connectionTitle, lang)}</h2>
+    <p>{pick(connectionBody, lang)}</p>
+  </section>
+
+  <section class="legal-notice">
+    <div class="legal-box">
+      <h2>{pick(legalTitle, lang)}</h2>
+      <p>{pick(legalBody, lang)}</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .research-hero {
+    padding-bottom: 2rem;
+  }
+
+  .projects {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem 4rem;
+  }
+
+  .project-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 20px;
+    padding: 2.5rem;
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+  }
+  .project-card:hover {
+    border-color: var(--border-strong);
+  }
+
+  .project-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .project-head h2 {
+    font-size: 1.5rem;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .license-badge {
+    font-size: 0.7rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent-cyan);
+    border: 1px solid var(--border-strong);
+    border-radius: 50px;
+    padding: 3px 10px;
+    white-space: nowrap;
+  }
+
+  .project-tagline {
+    color: var(--accent-cyan);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+  .project-body {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+  }
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .tech-tag {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-soft);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .install-block {
+    background: #0a0a0f;
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+  }
+  .install-block code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: #a5f3fc;
+    white-space: pre;
+    line-height: 1.6;
+  }
+
+  .connection {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+    text-align: center;
+  }
+  .connection h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .connection p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .legal-notice {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+  .legal-box {
+    background: rgba(255, 215, 0, 0.04);
+    border: 1px solid rgba(255, 215, 0, 0.25);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+  }
+  .legal-box h2 {
+    color: var(--accent-gold);
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  .legal-box p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 768px) {
+    .projects {
+      grid-template-columns: 1fr;
+      padding: 0 1.25rem 3rem;
+    }
+    .legal-box {
+      padding: 1.5rem;
+    }
+  }
+</style>
