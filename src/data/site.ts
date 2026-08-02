@@ -369,4 +369,10 @@ export const UNIVERSE = [
     tagline: { en: 'Turns real site changes into IndexNow, Sitemap and RSS discovery signals', zh: '持續可發現性廣播器——把網站真實的內容變更轉換成 IndexNow、Sitemap、RSS 訊號' },
     href: 'https://beacon.evemiss.com',
   },
+  {
+    // added 2026-08-02, the day it went live
+    name: 'Bugology',
+    tagline: { en: 'Defect research record — a bug is a state that changes with evidence, and the judgement it replaced stays on the page', zh: '缺陷研究記錄——缺陷是會隨證據改變的狀態，而被推翻的判斷留在記錄裡' },
+    href: 'https://bugology.evemiss.com',
+  },
 ] as const;

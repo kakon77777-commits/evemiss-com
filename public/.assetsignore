@@ -1,0 +1,10 @@
+# Keep the Pages-era _worker.js out of the Worker's public asset bundle.
+#
+# wrangler refuses to deploy without this, and it is right to: dist/ is served
+# as static assets, so an uploaded _worker.js would be readable at
+# https://evemiss.com/_worker.js. It is 404 there today and must stay that way.
+#
+# The file itself is kept because the Pages path still uses it; it is the
+# routing/i18n script, not the Worker's entry point — wrangler.jsonc points
+# "main" at worker/index.js.
+_worker.js
