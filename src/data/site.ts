@@ -364,4 +364,9 @@ export const UNIVERSE = [
     tagline: { en: 'Our own open-source crawler + governed research runtime', zh: '我們自己打造的開源爬蟲＋治理研究執行環境' },
     href: '/research',
   },
+  {
+    name: 'Continuous Discovery Beacon',
+    tagline: { en: 'Turns real site changes into IndexNow, Sitemap and RSS discovery signals', zh: '持續可發現性廣播器——把網站真實的內容變更轉換成 IndexNow、Sitemap、RSS 訊號' },
+    href: 'https://beacon.evemiss.com',
+  },
 ] as const;
