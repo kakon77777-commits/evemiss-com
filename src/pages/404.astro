@@ -1,0 +1,62 @@
+---
+// Cloudflare Pages serves this with a real 404 status for any path that does
+// not resolve to an asset. Without it, env.ASSETS.fetch() falls back to the
+// homepage and every unknown URL answers 200 — /wp-login.php, /xyzzy and a
+// mistyped language code all looked like real pages, and a crawler could index
+// an unbounded number of duplicates of the front page.
+//
+// English only, on purpose: the edge worker negotiates language for page routes
+// by rewriting into /<lang>/…, and a 404 is not a page route. Adding localized
+// 404s would mean 40 more URLs whose only job is to say "this is not a URL".
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+---
+
+<BaseLayout
+  lang="en"
+  title="Not found"
+  description="No page exists at this address on evemiss.com."
+>
+  <main class="notfound">
+    <p class="notfound-code">404</p>
+    <h1 class="notfound-title">No page exists at this address.</h1>
+    <p class="notfound-text">
+      The link may be out of date, or the address may have a typo in it.
+      Start from the <a href="/">home page</a>, or read about the
+      <a href="/research">research</a>.
+    </p>
+    <p class="notfound-meta">{SITE.name}</p>
+  </main>
+</BaseLayout>
+
+<style>
+  .notfound {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 8rem;
+  }
+  .notfound-code {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.8rem;
+    letter-spacing: 0.24em;
+    opacity: 0.6;
+    margin: 0 0 1.25rem;
+  }
+  .notfound-title {
+    font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+    line-height: 1.15;
+    margin: 0 0 1rem;
+  }
+  .notfound-text {
+    margin: 0 0 2.5rem;
+    opacity: 0.85;
+    line-height: 1.7;
+  }
+  .notfound-meta {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    opacity: 0.5;
+    margin: 0;
+  }
+</style>

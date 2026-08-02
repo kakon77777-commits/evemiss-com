@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# The localized trees exist so the edge worker can serve a negotiated language
+# at the bare URL. Every one of them 301s to that bare URL, so there is nothing
+# for a crawler to fetch under them.
+Disallow: /_astro/
+
+Sitemap: https://evemiss.com/sitemap-index.xml

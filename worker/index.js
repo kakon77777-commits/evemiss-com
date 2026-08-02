@@ -239,6 +239,14 @@ export default {
       return Response.redirect(url.toString(), 301);
     }
 
+    // --- /sitemap.xml is the address crawlers try -------------------------
+    // @astrojs/sitemap emits sitemap-index.xml + sitemap-0.xml and offers no
+    // option to name the index sitemap.xml, so point the conventional address
+    // at the real one rather than leaving it to fall through to the 404.
+    if (url.pathname === '/sitemap.xml') {
+      return Response.redirect(`https://${CANONICAL_HOST}/sitemap-index.xml`, 301);
+    }
+
     // --- legacy localized URLs: /zh/foo → /foo + remembered preference ---
     for (const lang of LANGS) {
       const m = url.pathname.match(new RegExp(`^/${lang}(/.*)?$`));
