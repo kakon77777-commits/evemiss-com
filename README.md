@@ -100,6 +100,12 @@ during that first deploy:
   npx wrangler pages deploy dist --project-name evemiss --branch main
   ```
 
+  Or just run `bash deploy.sh`, which builds, deploys with the correct
+  branch flag, smoke-tests the live domain, and notifies the Continuous
+  Discovery Beacon (beacon.evemiss.com) once that smoke test confirms the
+  deploy is actually live. Set `BEACON_SUBMIT_TOKEN_EVEMISS` locally to
+  enable that last step; it's silently skipped otherwise.
+
 Verified live post-deploy: homepage content, both Trinity card link changes,
 the Universe grid, `Content-Language` header + cookie-based language
 override (`curl -H "Cookie: lang=en" https://evemiss.com/`), all via direct
